@@ -67,7 +67,7 @@ echo 'sh.enableSharding("test")' | docker-compose exec -T s1 mongo
 ### Enable Sharding of Collection `test`
 
 ```
-echo 'sh.shardCollection("test.test", {a: "hashed"})' | docker-compose exec -T s1 mongo
+echo 'sh.shardCollection("test.test", {_id: "hashed"})' | docker-compose exec -T s1 mongo
 ```
 
 And check sharding status again:
