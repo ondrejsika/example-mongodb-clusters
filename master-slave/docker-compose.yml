@@ -1,0 +1,11 @@
+version: "3.7"
+services:
+  mongo1:
+    image: mongo:4.2
+    command: mongod --replSet rs1 --bind_ip 0.0.0.0
+  mongo2:
+    image: mongo:4.2
+    command: mongod --replSet rs1 --bind_ip 0.0.0.0
+  mongo3:
+    image: mongo:4.2
+    command: mongod --replSet rs1 --bind_ip 0.0.0.0
