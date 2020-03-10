@@ -1,0 +1,40 @@
+version: "3.7"
+services:
+  rs1n1:
+    image: mongo:4.2
+    command: mongod --shardsvr --replSet rs1 --bind_ip 0.0.0.0 --port 27017
+  rs1n2:
+    image: mongo:4.2
+    command: mongod --shardsvr --replSet rs1 --bind_ip 0.0.0.0 --port 27017
+  rs1n3:
+    image: mongo:4.2
+    command: mongod --shardsvr --replSet rs1 --bind_ip 0.0.0.0 --port 27017
+
+  rs2n1:
+    image: mongo:4.2
+    command: mongod --shardsvr --replSet rs2 --bind_ip 0.0.0.0 --port 27017
+  rs2n2:
+    image: mongo:4.2
+    command: mongod --shardsvr --replSet rs2 --bind_ip 0.0.0.0 --port 27017
+  rs2n3:
+    image: mongo:4.2
+    command: mongod --shardsvr --replSet rs2 --bind_ip 0.0.0.0 --port 27017
+
+  cfg1:
+    image: mongo:4.2
+    command: mongod --configsvr --replSet cfg1 --bind_ip 0.0.0.0 --port 27017
+  cfg2:
+    image: mongo:4.2
+    command: mongod --configsvr --replSet cfg1 --bind_ip 0.0.0.0 --port 27017
+  cfg3:
+    image: mongo:4.2
+    command: mongod --configsvr --replSet cfg1 --bind_ip 0.0.0.0 --port 27017
+
+  s1:
+    image: mongo:4.2
+    command: mongos --configdb cfg1/cfg1:27017,cfg2:27017,cfg3:27017 --bind_ip 0.0.0.0 --port 27017
+    # ports:
+      # - 27017:27017
+  s2:
+    image: mongo:4.2
+    command: mongos --configdb cfg1/cfg1:27017,cfg1:27017,cfg1:27017 --bind_ip 0.0.0.0 --port 27017
